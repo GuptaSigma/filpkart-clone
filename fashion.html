@@ -1,0 +1,217 @@
+<!-- fashion.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fashion</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #2196f3;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .search-container {
+      margin-top: 1rem;
+    }
+
+    .search-container input {
+      padding: 0.5rem;
+      width: 200px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .search-container button {
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: white;
+      color: #2196f3;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .search-container button:hover {
+      background-color: #e3f2fd;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .product-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .product-title {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      font-weight: bold;
+    }
+
+    .product-price {
+      color: #388e3c;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .add-to-cart {
+      background-color: #2196f3;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-to-cart:hover {
+      background-color: #1976d2;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #333;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Fashion</h1>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for fashion..."/>
+    <button onclick="searchProducts()">Search</button>
+  </div>
+</header>
+
+<main>
+  <div class="products" id="productGrid"></div>
+</main>
+
+<footer>
+  © 2024 Your Store. All rights reserved.
+</footer>
+
+<script>
+const products = [
+  {
+    id: 1,
+    title: "Men's Slim Fit Casual Shirt",
+    price: "₹999",
+    image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcThRW_LRj1PjI8io1mknHqQcs9q2-fM8E7rguYfWqsJz1_4Q0eCWMlpuWHspPwTlUIUf3uLx-r4jZRokZBZuBPNicaUnSTYQL0RupTp09gl6IVHE-xpAl3XvA"
+  },
+  {
+    id: 2,
+    title: "Women's Georgette Floral Dress",
+    price: "₹1,299",
+    image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTCb-6-9MeIytkdRIcPHlYLeaCkVe6VBo-Bpp49WEPam49nXXo3SkolER_OSr8NjEwClMStH77j0TwAkprVD_C-EoV_A2twL02jDKGIBx4"
+  },
+  {
+    id: 3,
+    title: "Unisex Sports Shoes",
+    price: "₹1,899",
+    image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSoWfZdx5iKsgl-tWTXW7scwzWpwvIj9_z2x6bzZuGSzirWjtWR_Mscb0d299sr-6HnEtpruPuYN-0YRxUMV0Cvalvz-4sbCtHF1uk4qWg"
+  },
+  {
+    id: 4,
+    title: "Women's Handbag Set (3 Pieces)",
+    price: "₹1,499",
+    image: "https://images.meesho.com/images/products/116914738/mqj6g_1200.jpg"
+  },
+  {
+    id: 5,
+    title: "Men leather wallet",
+    price: "₹499",
+    image: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQnOPbsnXJ0Q4GD8UtTl9A0-Vm6wTYXgsKIWmo68sr89I-KVS_S6qw0LllITfbi5vb9VwY0AXcOtORwv04QzJ_lAZheZKQEHWUGIGUc8iUh"
+  },
+  {
+  id: 6,
+  title: "Stylish Sunglasses for Men & Women",
+  price: "₹799",
+  image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSVzT7UXkXl7XqL4xmfDK-YUZYrFbJ4sZoNncU34KjItaRjRhx8MdvJdHpLmjjN9NIL5T52Kac1mBTl9b_okBTv3uXKcr_PC7uqkHy1DoyF5XB6HNeGFs9hCw"
+}  // ✅ This closing brace was missing
+];
+function displayProducts(productList) {
+  const container = document.getElementById('productGrid');
+  container.innerHTML = '';
+  if (productList.length === 0) {
+    container.innerHTML = '<p>No products found.</p>';
+    return;
+  }
+
+  productList.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+
+    const img = document.createElement('img');
+    img.src = product.image;
+    img.alt = product.title;
+    img.className = 'product-image';
+
+    const title = document.createElement('div');
+    title.className = 'product-title';
+    title.innerText = product.title;
+
+    const price = document.createElement('div');
+    price.className = 'product-price';
+    price.innerText = product.price;
+
+    const button = document.createElement('button');
+    button.className = 'add-to-cart';
+    button.innerText = 'Add to Cart';
+    button.onclick = () => alert(`Added ${product.title} to cart!`);
+
+    card.appendChild(img);
+    card.appendChild(title);
+    card.appendChild(price);
+    card.appendChild(button);
+
+    container.appendChild(card);
+  });
+}
+
+function searchProducts() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = products.filter(p => p.title.toLowerCase().includes(query));
+  displayProducts(filtered);
+}
+
+window.onload = () => displayProducts(products);
+</script>
+
+</body>
+</html>

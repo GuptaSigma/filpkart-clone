@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Flipkart - Product Page</title>
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+
+  /* Header */
+  header {
+    background-color: #2874f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    color: white;
+  }
+
+  header h1 {
+    font-size: 22px;
+  }
+
+  /* Search Bar */
+  .search-box {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-box input[type="text"] {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+    width: 250px;
+  }
+
+  .search-box button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+  }
+
+  /* Main */
+  main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Product Card Container */
+  .product-card {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    flex-wrap: wrap; /* Responsive stacking */
+  }
+
+  /* Image Section */
+  .image-section {
+    flex: 1 1 40%;
+    min-width: 200px;
+  }
+
+  .image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Details Section */
+  .details-section {
+    flex: 1 1 60%;
+    padding: 15px;
+  }
+
+  /* Product Title & Price */
+  .product-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  .product-price {
+    color: #388e3c;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  /* Product Info & Offer */
+  .product-info {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .offer-section {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #d32f2f;
+  }
+
+  /* Buttons */
+  .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .add-to-cart, .buy-now {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .add-to-cart {
+    background-color: #efc600; /* Yellow shade #efc600 */
+    color: black;
+  }
+
+  .buy-now {
+    background-color: #ff3b30; /* Red shade */
+    color: white;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #2874f0;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    margin-top: 30px;
+  }
+
+  /* Responsive adjustments */
+  @media(max-width: 768px) {
+    .product-card {
+      flex-direction: column;
+    }
+    .image-section, .details-section {
+      flex: 1 1 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Flipkart</h1>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for products..." />
+    <button onclick="searchProduct()">Search</button>
+  </div>
+</header>
+
+<main>
+  <div class="product-card" id="productContainer">
+    <!-- Image Section -->
+    <div class="image-section">
+      <img src="https://images.unsplash.com/photo-1604651427303-3f4e4b0f0f4e?ixlib=rb-4.0.1&auto=format&fit=crop&w=800&q=80" alt="Apple iPhone 16 Pro Max"/>
+    </div>
+    <!-- Details Section -->
+    <div class="details-section">
+      <div class="product-title">Apple iPhone 16 Pro Max - Black Titanium 256 GB</div>
+      <div class="product-price">₹1,59,900</div>
+      
+      <!-- Product Specifications & Offers -->
+      <div class="product-info">
+        <strong>RAM:</strong> 8 GB<br/>
+        <strong>Storage:</strong> 256 GB<br/>
+        <strong>Processor:</strong> A17 Pro Chip<br/>
+        <strong>Offer:</strong> 25% Bank Discount
+      </div>
+      
+      <!-- Offer Details -->
+      <div class="offer-section">
+        Get 25% off on EMI transactions with select banks!
+      </div>
+      
+      <!-- Buttons -->
+      <div class="buttons">
+        <button class="add-to-cart" onclick="alert('Added to cart!')">Add to Cart</button>
+        <button class="buy-now" onclick="alert('Buy now!')">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2024 Flipkart Clone. All rights reserved.
+</footer>
+
+<script>
+  function searchProduct() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    alert('Searching for: ' + query);
+  }
+</script>
+
+</body>
+</html>

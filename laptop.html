@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>New Laptop</title>
+<style>
+  /* Reset some default styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+
+  /* Header styles */
+  header {
+    background-color: #2874f0;
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  /* Search bar styles */
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-container input[type="text"] {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+    width: 250px;
+  }
+
+  .search-container button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+  }
+
+  /* Main content styles */
+  main {
+    padding: 20px;
+  }
+
+  /* Products grid */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .product-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background-color: #f0f0f0;
+  }
+
+  .product-details {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .product-price {
+    color: #388e3c;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .add-to-cart {
+    background-color: #2874f0;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  /* Footer styles */
+  footer {
+    background-color: #2874f0;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Laptops</h1>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for laptops..."/>
+    <button onclick="searchProducts()">Search</button>
+  </div>
+</header>
+
+<main>
+  <div class="products" id="productGrid">
+    <!-- Products will be dynamically inserted here -->
+  </div>
+</main>
+
+<footer>
+  © 2024 Your Store. All rights reserved.
+</footer>
+
+<script>
+  // Updated product data for laptops
+  const products = [
+    {
+      id: 1,
+      title: "Lenovo 16\" ThinkPad E16 Gen 1 Notebook",
+      price: "₹70,000",
+      image: 
+"https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTkQzUHr4yvNeCtQbH0qkzXrI5rjXYZPg4MBDeDXqKlNt4mpyTyZE1Q2w8yR_8EhFf7sGz_ttLh5WCWue4ZpIekJY_5LH1xHXjVHoVFwupCQMUklnPI8TjamoyKrIrzqZtt-QVW&usqp=CAc"    },
+    {
+      id: 2,
+      title: "Dell Vostro 3520 Laptop Windows 11 & 12th gen Intel",
+      price: "₹75,000",
+      image: 
+"data:image/avif;base64,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"    },
+    {
+      id: 3,
+      title: "HP 15-FA1346TX Intel Core i5 13th Gen-13420H",
+      price: "₹68,000",
+      image: 
+"https://img6.gadgetsnow.com/gd/images/products/additional/small/G575428_View_1/computer-laptop/laptops/hp-15-fa1346tx-intel-core-i5-13th-gen-13420h-15-6-inches-gaming-laptop-16gb-512gb-ssd-windows-11-performance-blue-2-29-kg-.jpg"    },
+    {
+      id: 4,
+      title: "Acer Swift Neo OLED AI PC Intel Core Ultra 5 115U",
+      price: "₹85,000",
+      image: 
+"https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSOFi48OUli1bfVz2g3G_ylWwsHmwdS65B1EUglLtE4PBEwpvm2o8pmc9SBDHR5PP4lH-monv9N2J5k1e65utm4EkgdarsYhmJMC1UuXpVCZsm-A0zKbdIDT07-c3DqlzPF&usqp=CAc"    },
+    {
+      id: 5,
+      title: "ASUS Vivobook 16 X1607QA-MB050WS; Copilot+ PC",
+      price: "₹65,000",
+      image:
+"https://in.store.asus.com/media/catalog/product/x/1/x1607qa-mb050ws_20_.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=800&width=800&canvas=800:800"    },
+  ];
+
+  // Function to display products
+  function displayProducts(productList) {
+    const container = document.getElementById('productGrid');
+    container.innerHTML = '';
+
+    if (productList.length === 0) {
+      container.innerHTML = '<p>No products found.</p>';
+      return;
+    }
+
+    productList.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+
+      const img = document.createElement('img');
+      img.src = product.image;
+      img.alt = product.title;
+      img.className = 'product-image';
+
+      const details = document.createElement('div');
+      details.className = 'product-details';
+
+      const title = document.createElement('div');
+      title.className = 'product-title';
+      title.innerText = product.title;
+
+      const price = document.createElement('div');
+      price.className = 'product-price';
+      price.innerText = product.price;
+
+      const button = document.createElement('button');
+      button.className = 'add-to-cart';
+      button.innerText = 'Add to Cart';
+      button.onclick = () => alert(`Added ${product.title} to cart!`);
+
+      details.appendChild(title);
+      details.appendChild(price);
+      details.appendChild(button);
+
+      card.appendChild(img);
+      card.appendChild(details);
+
+      container.appendChild(card);
+    });
+  }
+
+  // Function to handle search
+  function searchProducts() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = products.filter(p => p.title.toLowerCase().includes(query));
+    displayProducts(filtered);
+  }
+
+  // Display all products on page load
+  window.onload = () => {
+    displayProducts(products);
+  };
+</script>
+
+</body>
+</html>

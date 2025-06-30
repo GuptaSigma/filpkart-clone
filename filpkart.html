@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Flipkart Clone Homepage</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Navbar */
+  .navbar {
+    background-color:#2874f0;
+    padding:10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .navbar h2 {
+    color:white;
+  }
+  .navbar input {
+    flex:1;
+    padding:5px;
+    border-radius:4px;
+    border:none;
+  }
+  .navbar button {
+    padding:5px 10px;
+    border:none;
+    border-radius:4px;
+    background-color:#f0f0f0;
+  }
+  .navbar a {
+    color:white;
+    text-decoration:none;
+    margin-left:10px;
+  }
+
+  /* Welcome Banner */
+  .banner {
+    background-color:#f2f2f2;
+    padding:20px;
+    text-align:center;
+  }
+
+  /* Slider */
+  .slider-section {
+    margin:20px 0;
+  }
+  .slider-section h2 {
+    margin-left:10px;
+  }
+  #slider {
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+    padding:10px;
+    scroll-behavior:smooth;
+  }
+  .slide-card {
+    min-width:200px;
+    background:#fff;
+    padding:10px;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    flex-shrink:0;
+  }
+  .slide-card img {
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:8px;
+  }
+
+  /* Main Layout */
+  .main-layout {
+    display:flex;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width:200px;
+    padding:10px;
+    background:#f8f8f8;
+  }
+  .sidebar h3 {
+    margin-top:0;
+  }
+  .sidebar ul {
+    list-style:none;
+    padding:0;
+  }
+  .sidebar ul li {
+    margin:8px 0;
+  }
+  .sidebar ul li a {
+    text-decoration:none;
+    color:black;
+    display:block;
+    padding:5px 0;
+  }
+
+  /* Product Container */
+  .product-container {
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    padding:10px;
+  }
+  .product-card {
+    width:200px;
+    border:1px solid #ccc;
+    padding:10px;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+    text-align:center;
+  }
+  .product-card img {
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:8px;
+  }
+/* 🔵 Update Button Styles */
+.add-to-cart-btn {
+  background-color: green; /* नया रंग */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buy-now-btn {
+  background-color: purple; /* नया रंग */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+  /* Footer */
+  .footer {
+    text-align:center;
+    padding:10px;
+    background:#2874f0;
+    color:white;
+  }
+</style>
+</head>
+<body>
+
+<!-- 🔷 Navbar -->
+<div class="navbar">
+  <h2>Flipkart</h2>
+  <input type="text" placeholder="Search for products..." />
+  <button>Search</button>
+  <a href="#">Login</a>
+  <a href="#" id="cart-link">Cart (0)</a>
+  <a href="about.html">About</a>
+</div>
+
+<!-- 🏠 Welcome Banner -->
+<div class="banner">
+  <h1>Welcome to Flipkart</h1>
+  <p>Your one-stop shop for electronics, fashion, sports & more!</p>
+</div>
+
+<!-- 🔄 Auto Sliding Carousel -->
+<div class="slider-section">
+  <h2>🔥 Top Offers</h2>
+  <div class="slider-container" id="slider">
+    <div class="slide-card"><img src="https://shorturl.at/icKEw" alt="Phone Offer" /><p style="text-align:center;">📱 New Phone Launch</p></div>
+    <div class="slide-card"><img src="https://shorturl.at/RRNCR" alt="HDFC Offer" /><p style="text-align:center;">💼 10% HDFC Cashback</p></div>
+    <div class="slide-card"><img src="https://shorturl.at/nYaNr" alt="Brand Deal" /><p style="text-align:center;">🫂 New Brand Deal</p></div>
+    <div class="slide-card"><img src="https://shorturl.at/jvpRF" alt="Ticket Offer" /><p style="text-align:center;">Ticket Offer</p></div>
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/805f622832a2a97e.jpeg?q=60" alt="Laptop Offer" /><p style="text-align:center;">Laptop Offer</p></div>
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/www/1060/1560/promos/26/09/2023/6c3c5fe2-c236-4fa2-8d97-595e1e01da01.jpg?q=60" alt="Fashion" /><p style="text-align:center;">Shop Fashion</p></div>
+  </div>
+</div>
+
+<!-- 🛍️ Main Layout -->
+<div class="main-layout">
+  <!-- 📂 Sidebar -->
+  <div class="sidebar">
+    <h3>Categories</h3>
+    <ul>
+      <li><a href="mobile.html">📱 Mobiles</a></li>
+      <li><a href="laptop.html">💻 Laptops</a></li>
+      <li><a href="#">👕 Fashion</a></li>
+      <li><a href="#">🛋️ Furniture</a></li>
+      <li><a href="#">🔌 Electronics</a></li>
+      <li><a href="game.html">🎮 Gaming</a></li>
+    </ul>
+  </div>
+
+  <!-- 🛒 Product Container -->
+  <div class="product-container">
+    <!-- Product 1 -->
+    <div class="product-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmlgsMnCX0-UPJWcta43hRhaYGMPoLy0ZNfA&s" alt="MRF Cricket Bat" />
+      <h3>MRF Cricket Bat</h3>
+      <p>₹4999</p>
+      <button class="add-to-cart-btn" onclick="addToCart('MRF Cricket Bat', 4999)">Add to Cart</button>
+      <button class="buy-now-btn" onclick="buyNow('MRF Cricket Bat', 4999)">Buy Now</button>
+    </div>
+    <!-- Product 2 -->
+    <div class="product-card">
+      <img src="https://www.tcscricket.com/wp-content/uploads/2022/04/SG-SHIELD-20-WHITE-CRICKET-BALL-LEATHER-2.jpg" alt="Senson Ball" />
+      <h3>Senson Ball</h3>
+      <p>₹249</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Senson Ball', 249)">Add to Cart</button>
+      <button class="buy-now-btn" onclick="buyNow('Senson Ball', 249)">Buy Now</button>
+    </div>
+    <!-- Product 3 -->
+    <div class="product-card">
+      <img src="https://www.brewingcricket.com/cdn/shop/files/Photoroom_002_20240727_72227AM.jpg?v=1722045319" alt="Cricket Helmet" />
+      <h3>Cricket Helmet</h3>
+      <p>₹899</p>
+      <button class="add-to-cart-btn" onclick="addToCart('Cricket Helmet', 899)">Add to Cart</button>
+      <button class="buy-now-btn" onclick="buyNow('Cricket Helmet', 899)">Buy Now</button>
+    </div>
+<!-- New Product 1: iPhone 17 Pro -->
+<div class="product-card" data-category="mobiles" data-price="1731">
+  <img src="https://shorturl.at/P0lrC" alt="iPhone 17 Pro" />
+  <h3>iPhone 17 Pro</h3>
+  <p>$1,731.60</p>
+  <button class="add-to-cart" onclick="addToCart('iPhone 17 Pro', 1731)">Add to Cart</button>
+  <button class="buy-now-btn" onclick="buyNow('iPhone 17 Pro', 1731)">Buy Now</button>
+</div>
+
+<!-- New Product 2: Samsung S24 Ultra -->
+<div class="product-card" data-category="mobiles" data-price="1750">
+  <img src="https://shorturl.at/F1zqc" alt="Samsung S24 Ultra" />
+  <h3>Samsung S24 Ultra</h3>
+  <p>$1,750.60</p>
+  <button class="add-to-cart" onclick="addToCart('Samsung S24 Ultra', 1750)">Add to Cart</button>
+  <button class="buy-now-btn" onclick="buyNow('Samsung S24 Ultra', 1750)">Buy Now</button>
+</div>
+
+<!-- New Product 3: HP Laptop -->
+<div class="product-card" data-category="laptops" data-price="900">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBb8Tx76oKdVy3poZ1_hYZNhndDS57vNbO7A&s" alt="HP Laptop" />
+  <h3>HP Laptop</h3>
+  <p>$900</p>
+  <button class="add-to-cart" onclick="addToCart('HP Laptop', 900)">Add to Cart</button>
+  <button class="buy-now-btn" onclick="buyNow('HP Laptop', 900)">Buy Now</button>
+</div>
+  </div>
+</div>
+
+<!-- 🔳 Modal (if needed, can be added here) -->
+
+<!-- JavaScript -->
+<script>
+  // Cart array and counter
+  const cart = [];
+  let cartCount = 0;
+
+  // Add to Cart Function
+  function addToCart(name, price) {
+    cart.push({ name: name, price: price });
+    cartCount++;
+    document.getElementById('cart-link').innerText = 'Cart (' + cartCount + ')';
+    alert(name + ' added to cart.');
+  }
+
+  // Buy Now Function
+  function buyNow(name, price) {
+    alert('Proceed to buy ' + name + ' for ₹' + price);
+  }
+
+  // Slider auto-scroll
+  const slider = document.getElementById("slider");
+  let scrollAmount = 0;
+  let maxScroll = slider.scrollWidth - slider.clientWidth;
+
+  setInterval(() => {
+    scrollAmount += 210; // slide by 210px
+    if (scrollAmount > maxScroll) scrollAmount = 0;
+    slider.scrollTo({ left: scrollAmount, behavior: "smooth" });
+  }, 3000);
+</script>
+
+<!-- Footer -->
+<div class="footer">
+  <p>©@035 Flipkart | Made with by Sigma</p>
+</div>
+
+</body>
+</html>
