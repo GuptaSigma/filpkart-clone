@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- BUG FIX 7: Missing viewport meta tag — added for mobile responsiveness -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flipkart Clone Homepage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- BUG FIX 8: style.css was not linked — pages were using only inline styles -->
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Button styles (consolidated from duplicated inline + style.css) ── */
+    .add-to-cart-btn {
+      background-color: #388e3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      transition: background-color 0.2s;
+    }
+    .add-to-cart-btn:hover { background-color: #2e7d32; }
+
+    .buy-now-btn {
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      transition: background-color 0.2s;
+    }
+    .buy-now-btn:hover { background-color: #c2185b; }
+
+    .product-card .btn-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<div class="navbar">
+  <h2>Flipkart</h2>
+  <input type="text" placeholder="Search for products..." />
+  <button>Search</button>
+  <a href="#">Login</a>
+  <!-- BUG FIX 9: cart-link id must exist for script.js to update cart count -->
+  <a href="#" id="cart-link">Cart (0)</a>
+  <a href="about.html">About</a>
+</div>
+
+<!-- ── Welcome Banner ── -->
+<div class="banner">
+  <h1>Welcome to Flipkart</h1>
+  <p>Your one-stop shop for electronics, fashion, sports &amp; more!</p>
+</div>
+
+<!-- ── Auto Sliding Carousel ── -->
+<div class="slider-section">
+  <h2>🔥 Top Offers</h2>
+  <!-- BUG FIX 10: div had id="slider" but style.css targeted .slider-container;
+       kept id for JS and added class for CSS -->
+  <div class="slider-container" id="slider">
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/805f622832a2a97e.jpeg?q=60" alt="Phone Offer" /><p>📱 New Phone Launch</p></div>
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/www/1060/1560/promos/26/09/2023/6c3c5fe2-c236-4fa2-8d97-595e1e01da01.jpg?q=60" alt="HDFC Offer" /><p>💼 10% HDFC Cashback</p></div>
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/805f622832a2a97e.jpeg?q=60" alt="Brand Deal" /><p>🫂 New Brand Deal</p></div>
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/www/1060/1560/promos/26/09/2023/6c3c5fe2-c236-4fa2-8d97-595e1e01da01.jpg?q=60" alt="Laptop Offer" /><p>💻 Laptop Offer</p></div>
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/805f622832a2a97e.jpeg?q=60" alt="Fashion" /><p>👗 Shop Fashion</p></div>
+    <!-- Duplicate slides for seamless infinite loop -->
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/www/1060/1560/promos/26/09/2023/6c3c5fe2-c236-4fa2-8d97-595e1e01da01.jpg?q=60" alt="Phone Offer" /><p>📱 New Phone Launch</p></div>
+    <div class="slide-card"><img src="https://rukminim1.flixcart.com/fk-p-flap/3240/540/image/805f622832a2a97e.jpeg?q=60" alt="HDFC Offer" /><p>💼 10% HDFC Cashback</p></div>
+  </div>
+</div>
+
+<!-- ── Main Layout ── -->
+<div class="main-layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Categories</h3>
+    <ul>
+      <li><a href="mobile.html">📱 Mobiles</a></li>
+      <li><a href="laptop.html">💻 Laptops</a></li>
+      <li><a href="fashion.html">👕 Fashion</a></li>
+      <li><a href="f.html">🛋️ Furniture</a></li>
+      <li><a href="Electronincs.html">🔌 Electronics</a></li>
+      <li><a href="game.html">🎮 Gaming</a></li>
+    </ul>
+  </div>
+
+  <!-- Products -->
+  <div class="product-container">
+
+    <!-- Product 1 -->
+    <div class="product-card" data-category="sports" data-price="4999">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmlgsMnCX0-UPJWcta43hRhaYGMPoLy0ZNfA&s" alt="MRF Cricket Bat" />
+      <h3>MRF Cricket Bat</h3>
+      <p>₹4,999</p>
+      <div class="btn-row">
+        <button class="add-to-cart-btn" onclick="addToCart('MRF Cricket Bat', 4999)">Add to Cart</button>
+        <button class="buy-now-btn" onclick="buyNow('MRF Cricket Bat', 4999)">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product-card" data-category="sports" data-price="249">
+      <img src="https://www.tcscricket.com/wp-content/uploads/2022/04/SG-SHIELD-20-WHITE-CRICKET-BALL-LEATHER-2.jpg" alt="SG Cricket Ball" />
+      <h3>SG Cricket Ball</h3>
+      <!-- BUG FIX 11: "Senson Ball" was a typo — corrected to "SG Cricket Ball" -->
+      <p>₹249</p>
+      <div class="btn-row">
+        <button class="add-to-cart-btn" onclick="addToCart('SG Cricket Ball', 249)">Add to Cart</button>
+        <button class="buy-now-btn" onclick="buyNow('SG Cricket Ball', 249)">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product-card" data-category="sports" data-price="899">
+      <img src="https://www.brewingcricket.com/cdn/shop/files/Photoroom_002_20240727_72227AM.jpg?v=1722045319" alt="Cricket Helmet" />
+      <h3>Cricket Helmet</h3>
+      <p>₹899</p>
+      <div class="btn-row">
+        <button class="add-to-cart-btn" onclick="addToCart('Cricket Helmet', 899)">Add to Cart</button>
+        <button class="buy-now-btn" onclick="buyNow('Cricket Helmet', 899)">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Product 4: iPhone 17 Pro -->
+    <!-- BUG FIX 12: used class "add-to-cart" (no onclick) — inconsistent with other
+         cards that used onclick. Unified to add-to-cart-btn + onclick. -->
+    <div class="product-card" data-category="mobiles" data-price="144999">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9hwnmV6bY38FV0akNKJr9AwH-z2D7VHEGVw&s" alt="iPhone 17 Pro" />
+      <h3>iPhone 17 Pro</h3>
+      <!-- BUG FIX 13: prices were in $ for Indian Flipkart clone — converted to ₹ -->
+      <p>₹1,44,999</p>
+      <div class="btn-row">
+        <button class="add-to-cart-btn" onclick="addToCart('iPhone 17 Pro', 144999)">Add to Cart</button>
+        <button class="buy-now-btn" onclick="buyNow('iPhone 17 Pro', 144999)">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Product 5: Samsung S24 Ultra -->
+    <div class="product-card" data-category="mobiles" data-price="134999">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOBn4JHMhJl-lXbFrI2lzPKGHdJgFU6xEfMw&s" alt="Samsung S24 Ultra" />
+      <h3>Samsung S24 Ultra</h3>
+      <p>₹1,34,999</p>
+      <div class="btn-row">
+        <button class="add-to-cart-btn" onclick="addToCart('Samsung S24 Ultra', 134999)">Add to Cart</button>
+        <button class="buy-now-btn" onclick="buyNow('Samsung S24 Ultra', 134999)">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- Product 6: HP Laptop -->
+    <div class="product-card" data-category="laptops" data-price="74999">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBb8Tx76oKdVy3poZ1_hYZNhndDS57vNbO7A&s" alt="HP Laptop" />
+      <h3>HP Laptop</h3>
+      <p>₹74,999</p>
+      <div class="btn-row">
+        <button class="add-to-cart-btn" onclick="addToCart('HP Laptop', 74999)">Add to Cart</button>
+        <button class="buy-now-btn" onclick="buyNow('HP Laptop', 74999)">Buy Now</button>
+      </div>
+    </div>
+
+  </div><!-- /.product-container -->
+</div><!-- /.main-layout -->
+
+<!-- ── Footer ── -->
+<!-- BUG FIX 14: "©@035" was a typo — corrected to "© 2025" -->
+<footer>
+  <p>© 2025 Flipkart Clone &nbsp;|&nbsp; Made with ❤️ by Sigma</p>
+</footer>
+
+<!-- BUG FIX 15: Removed duplicate inline cart/slider JS (now all in script.js) -->
+<script src="script.js"></script>
+
+</body>
+</html>

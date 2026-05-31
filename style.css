@@ -1,0 +1,382 @@
+/* ============================================================
+   style.css — Flipkart Clone (Fixed & Formatted)
+   ============================================================ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ── CSS Variables ── */
+:root {
+  --blue:      #2874f0;
+  --blue-dark: #0a57d4;
+  --green:     #388e3c;
+  --pink:      #e91e63;
+  --bg:        #f1f3f6;
+  --white:     #ffffff;
+  --text:      #212121;
+  --muted:     #757575;
+  --border:    #e0e0e0;
+  --shadow:    0 2px 10px rgba(0, 0, 0, 0.08);
+  --radius:    8px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ── */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  background-color: var(--blue);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbar h2 {
+  color: var(--white);
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.navbar input {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.navbar button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--white);
+  color: var(--blue);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.2s;
+}
+.navbar button:hover { background-color: #e8f0fe; }
+
+.navbar a {
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.navbar a:hover { opacity: 0.8; }
+
+/* ============================================================
+   BANNER
+   ============================================================ */
+.banner {
+  background-color: var(--white);
+  text-align: center;
+  padding: 32px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.banner h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.banner p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* ============================================================
+   SLIDER SECTION
+   ============================================================ */
+.slider-section {
+  background-color: var(--white);
+  padding: 24px 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.slider-section h2 {
+  margin-left: 24px;
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+/* BUG FIX: CSS animation targets .slider-container;
+   HTML id="slider" is used only by JS scroll fallback */
+.slider-container {
+  display: flex;
+  width: max-content;
+  animation: scrollSlider 28s linear infinite;
+}
+
+.slider-container:hover {
+  animation-play-state: paused;
+}
+
+.slide-card {
+  flex: 0 0 auto;
+  width: 280px;
+  margin-right: 20px;
+  background-color: var(--bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.slide-card img {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.slide-card p {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.slide-card:hover { transform: scale(1.04); }
+
+@keyframes scrollSlider {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+.main-layout {
+  display: flex;
+  gap: 0;
+  min-height: calc(100vh - 200px);
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background-color: var(--white);
+  padding: 20px 16px;
+  border-right: 1px solid var(--border);
+}
+
+.sidebar h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin: 8px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+.sidebar ul li a:hover {
+  background-color: #e8f0fe;
+  color: var(--blue);
+}
+
+/* ── Product Container ── */
+.product-container {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 24px;
+  align-content: flex-start;
+}
+
+/* ── Product Card ── */
+.product-card {
+  width: 200px;
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.product-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+}
+
+.product-card h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.product-card p {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+/* ── Buttons ── */
+.add-to-cart-btn {
+  background-color: var(--green);
+  color: var(--white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+.add-to-cart-btn:hover { background-color: #2e7d32; }
+
+.buy-now-btn {
+  background-color: var(--pink);
+  color: var(--white);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+.buy-now-btn:hover { background-color: #c2185b; }
+
+.wishlist-btn {
+  background-color: #fff0f5;
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  padding: 7px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+.wishlist-btn:hover { background-color: #ffe6ee; }
+
+/* ── Filter & Sort Section ── */
+.filter-section {
+  text-align: center;
+  padding: 16px;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+
+.filter-section select {
+  padding: 8px 12px;
+  margin: 0 8px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  font-family: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+/* BUG FIX: Original CSS targeted `footer` (element) but HTML used
+   <div class="footer">. Unified to both selectors. */
+footer,
+.footer {
+  background-color: var(--blue);
+  color: var(--white);
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media screen and (max-width: 768px) {
+  .main-layout  { flex-direction: column; }
+  .sidebar      { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+
+  .product-container {
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .product-card { width: 90%; max-width: 340px; }
+
+  .navbar { gap: 8px; }
+  .navbar input { width: 100%; }
+
+  .slide-card { width: 220px; }
+  .slide-card img { height: 140px; }
+
+  /* Stop animation on mobile — users prefer scroll */
+  .slider-container {
+    animation: none;
+    overflow-x: auto;
+    width: auto;
+  }
+}

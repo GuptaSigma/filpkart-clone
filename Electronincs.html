@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Electronics product</title>
+<style>
+  /* Reset some default styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+
+  /* Header styles */
+  header {
+    background-color: #2874f0;
+    padding: 15px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  /* Search bar styles */
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-container input[type="text"] {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 2px 0 0 2px;
+    outline: none;
+    width: 250px;
+  }
+
+  .search-container button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+  }
+
+  /* Main content styles */
+  main {
+    padding: 20px;
+  }
+
+  /* Products grid */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+
+  .product-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background-color: #f0f0f0;
+  }
+
+  .product-details {
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-title {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .product-price {
+    color: #388e3c;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .add-to-cart {
+    background-color: #2874f0;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  /* Footer styles */
+  footer {
+    background-color: #2874f0;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Mobiles</h1>
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search for gaming products..."/>
+    <button onclick="searchProducts()">Search</button>
+  </div>
+</header>
+
+<main>
+  <div class="products" id="productGrid">
+    <!-- Products will be dynamically inserted here -->
+  </div>
+</main>
+
+<footer>
+  © 2024 Your Store. All rights reserved.
+</footer>
+
+<script>
+  // Sample product data with empty image links
+  const products = [
+    {
+      id: 1,
+      title: "LG TV",
+      price: "₹99999",
+      image: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSSTMJrEt97_6gcRd1J0zScoou2_7lWTiPznsil8XgaYym1oe1RuhXby-8WDRsLbjv5wIkTLIzVs_CagKlHFehjZv_AsqyUN6bjFF9Nrxg" // Add your image URL here
+    },
+    {
+      id: 2,
+      title: "Iphone 16",
+      price: "₹1,59999",
+      image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS-ekNH5SMIa6M7Z3K8Meg00Esyns0zxBm2zTIMhGy0fcDFL39qa9VFggWaXeRx3tNTKl-tHS8TgWcEir3ZS4oxoSQrjcSBFcuIlkP60mNFo_38CB25WxzA" // Add your image URL here
+    },
+    {
+      id: 3,
+      title: "Sumsung Refrigerator ",
+      price: "₹1,49999",
+      image: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQhZ_lWrlkQ2rvXmHol77xhea8w2FJ4ynpndQwdX7X5mcCgUa2XgjcQ-njdiN6FFJUKqECsRxNLHyCHF1z6GbjVCReYTIjSZ5PVpZ7SLxHAfe1Bx2o3oZfGfw&usqp=CAc" // Add your image URL here
+    },
+    {
+      id: 4,
+      title: "LG 7 KG 5 Star",
+      price: "₹35,000",
+      image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcScKVBVuIbAZkH_dYEh_Kc8Q0P9oxPZtG2MSAx6sKfcNs2VsEetrlOkYWUc-6hQgGfoRPO3g--HsWbfzQ-2BjBR4UDWZgiaVdRGv7e8NhQnMCz41ODDLwQrkRT1V9BgSYvGKYETZbg&usqp=CAc" // Add your image URL here
+    },
+    {
+      id: 5,
+      title: "Voltas SMARTair Inverter AC",
+      price: "₹2,9999",
+      image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS7uEF6e7VopqNS6_v4beamOMBoXrzmLGiv8-diALenk-KxERuCHF9wk4eTfljOrJHp_tdY4BPEoeCBwkQqZXUtCHeo8qioth_rrYe6n_NN4VRfqjHShGf_UQ" // Add your image URL here
+    },
+  ];
+
+  // Function to display products
+  function displayProducts(productList) {
+    const container = document.getElementById('productGrid');
+    container.innerHTML = '';
+
+    if (productList.length === 0) {
+      container.innerHTML = '<p>No products found.</p>';
+      return;
+    }
+
+    productList.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+
+      const img = document.createElement('img');
+      img.src = product.image;
+      img.alt = product.title;
+      img.className = 'product-image';
+
+      const details = document.createElement('div');
+      details.className = 'product-details';
+
+      const title = document.createElement('div');
+      title.className = 'product-title';
+      title.innerText = product.title;
+
+      const price = document.createElement('div');
+      price.className = 'product-price';
+      price.innerText = product.price;
+
+      const button = document.createElement('button');
+      button.className = 'add-to-cart';
+      button.innerText = 'Add to Cart';
+      button.onclick = () => alert(`Added ${product.title} to cart!`);
+
+      details.appendChild(title);
+      details.appendChild(price);
+      details.appendChild(button);
+
+      card.appendChild(img);
+      card.appendChild(details);
+
+      container.appendChild(card);
+    });
+  }
+
+  // Function to handle search
+  function searchProducts() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = products.filter(p => p.title.toLowerCase().includes(query));
+    displayProducts(filtered);
+  }
+
+  // Display all products on page load
+  window.onload = () => {
+    displayProducts(products);
+  };
+</script>
+
+</body>
+</html>
